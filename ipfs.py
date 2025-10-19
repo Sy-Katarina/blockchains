@@ -9,9 +9,8 @@ def pin_to_ipfs(data):
 	# The function should return the Content Identifier (CID) of the data stored.
 
 	assert isinstance(data,dict), f"Error pin_to_ipfs expects a dictionary"
-	api_key = os.environ.get('371f89fc5df6d0e26488')
-	api_secret = os.environ.get('d7f98041357cf2a044ee0cebf4d9658201447cb64f3a612d72858d8bd19c1a34')
-	assert api_key and api_secret, "Missing Pinata credentials"
+	api_key = '371f89fc5df6d0e26488'
+	api_secret = 'd7f98041357cf2a044ee0cebf4d9658201447cb64f3a612d72858d8bd19c1a34'
 	url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
 	payload = json.dumps(data, separators=(',', ':'))
 	headers = {

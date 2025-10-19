@@ -3,10 +3,10 @@ import requests
 
 def pin_to_ipfs(data):
     assert isinstance(data, dict), "pin_to_ipfs expects a dictionary"
-    PINATA_JWT = ""
+    PINATA_JWT = os.environ.get("PINATA_JWT", "")
 
-    PINATA_API_KEY = ""
-    PINATA_API_SECRET = ""
+    PINATA_API_KEY = os.environ.get("PINATA_API_KEY", "")
+    PINATA_API_SECRET = os.environ.get("PINATA_API_SECRET", "")
 
     url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
     body = {"pinataContent": data} 

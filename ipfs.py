@@ -4,8 +4,8 @@ import requests
 def pin_to_ipfs(data):
     assert isinstance(data, dict), "pin_to_ipfs expects a dictionary"
 
-    PINATA_API_KEY = "5f7e5d42f517c1f74ed0"
-    PINATA_API_SECRET = "fa887b70756e3502d723a9c66cccb862bed4f293d3b2aaee3385288205d8c14c"
+    PINATA_API_KEY = "c0d75aa88a2180a5a0bf"
+    PINATA_API_SECRET = "8dc58b052cb23cbba3f7225c9e912dcbdd7eee28deda82926c84e74a9ccc989e"
 
     url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
     body = {"pinataContent": data}

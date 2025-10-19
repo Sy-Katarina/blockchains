@@ -4,14 +4,16 @@ import os
 
 def pin_to_ipfs(data):
     assert isinstance(data, dict), "pin_to_ipfs expects a dictionary"
-	PINATA_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....GHEWtqGi28s-hIhaL2WlSFeKeWae0WzQOUlSTQ9FshU"
+    PINATA_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."  # 你的 JWT
 
     url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
     body = {"pinataContent": data}
     headers = {"Authorization": f"Bearer {PINATA_JWT}"}
 
     response = requests.post(url, json=body, headers=headers)
-    assert response.status_code == 200, f"pin_to_ipfs failed with status code {response.status_code}: {response.text}"
+	assert response.status_code == 200, (
+        f"pin_to_ipfs failed with status code {response.status_code}: {response.text}"
+    )
     cid = response.json()["IpfsHash"]
     return cid
 

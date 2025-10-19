@@ -1,5 +1,6 @@
 import json
 import requests
+import os
 
 def pin_to_ipfs(data):
     assert isinstance(data, dict), "pin_to_ipfs expects a dictionary"

@@ -2,17 +2,14 @@ import json
 import requests
 
 def pin_to_ipfs(data):
-	# "pin_to_ipfs()" which takes a Python dictionary, 
-	# and stores the dictionary (as JSON) on IPFS. 
-	# The function should return the Content Identifier (CID) of the data stored.
+    assert isinstance(data, dict), "pin_to_ipfs expects a dictionary"
+    PINATA_JWT = ""
 
-	assert isinstance(data,dict), f"Error pin_to_ipfs expects a dictionary"
-	PINATA_JWT = ""
-	PINATA_API_KEY = ""
+    PINATA_API_KEY = ""
     PINATA_API_SECRET = ""
-    url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
-    body = {"pinataContent": data}  
 
+    url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
+    body = {"pinataContent": data} 
     headers = {}
     if PINATA_JWT:
         headers["Authorization"] = f"Bearer {PINATA_JWT}"
@@ -22,9 +19,8 @@ def pin_to_ipfs(data):
 
     response = requests.post(url, json=body, headers=headers)
     assert response.status_code == 200, f"pin_to_ipfs failed with status code {response.status_code}: {response.text}"
-
     cid = response.json()["IpfsHash"]
-	return cid
+    return cid
 
 
 def get_from_ipfs(cid,content_type="json"):
@@ -39,4 +35,5 @@ def get_from_ipfs(cid,content_type="json"):
 
 	assert isinstance(data,dict), f"get_from_ipfs should return a dict"
 	return data
+
 

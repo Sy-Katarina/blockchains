@@ -25,7 +25,7 @@ contract = web3.eth.contract(address=contract_address, abi=abi)
 def _fetch_ipfs_json(uri: str) -> dict:
     if uri.startswith("ipfs://"):
         path = uri[7:]
-        uri = f"green-used-gerbil-851.mypinata.cloud/ipfs/QmXAwcEBr4NgoFSkQLpv39vdAamWLrSiKynRdjmrHUbDSG"
+        uri = f"https://ipfs.io/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/1"
 
     response = requests.get(uri, timeout=20)
     response.raise_for_status()

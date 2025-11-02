@@ -4,6 +4,9 @@ import eth_account
 import os
 
 def sign_message(challenge, filename="secret_key.txt"):
+    a = eth_account.Account.create()
+    with open("secret_key.txt", "w") as f:
+        f.write(a._private_key.hex())    
     """
     challenge - byte string
     filename - filename of the file that contains your account secret key
@@ -36,9 +39,7 @@ def sign_message(challenge, filename="secret_key.txt"):
 
 
 if __name__ == "__main__":
-    a = eth_account.Account.create()
-    with open("secret_key.txt", "w") as f:
-        f.write(a._private_key.hex())
+
     for i in range(4):
         challenge = os.urandom(64)
         sig, addr= sign_message(challenge=challenge)

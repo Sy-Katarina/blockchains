@@ -2,10 +2,7 @@ from web3 import Web3
 import eth_account
 from eth_account.messages import encode_defunct
 
-def _to_defunct_message(m):
-    if isinstance(m, (bytes, bytearray)):
-        return encode_defunct(primitive=bytes(m))
-    return encode_defunct(text=str(m))
+
 
 def sign(m):
     w3 = Web3()

@@ -8,13 +8,13 @@ def sign(m):
     w3 = Web3()
 
     # TODO create an account for signing the message
-    account_object = 0  # Create an Eth account
-    public_key = 0  # Eth account public key
-    private_key = 0  # Eth account private key
+    account_object = eth_account.Account.create()  # Create an Eth account
+    public_key = account_object.address  # Eth account public key
+    private_key = account_object._private_key.hex()  # Eth account private key
 
     # TODO sign the given message "m"
-    message = ""  # Encode the message
-    signed_message = ""  # Sign the message
+    message = encode_defunct(text=str(m))  # Encode the message
+    signed_message = w3.eth.account.sign_message(message, private_key=private_key)  # Sign the message
 
 
     """You can save the account public/private keypair that prints in the next section
@@ -34,9 +34,9 @@ def verify(m, public_key, signed_message):
     w3 = Web3()
 
     # TODO verify the 'signed_message' is valid given the original message 'm' and the signers 'public_key'
-    message = ""  # Encode the message
-    signer = ""  # Verify the message
-    valid_signature = True  # True if message verifies, False if message does not verify
+    message = encode_defunct(text=str(m))  # Encode the message
+    signer = w3.eth.account.recover_message(message, signature=signed_message.signature)  # Verify the message
+    valid_signature = (signer == public_key)  # True if message verifies, False if message does not verify
 
     assert isinstance(valid_signature, bool), "verify should return a boolean value"
     return valid_signature
@@ -59,4 +59,3 @@ if __name__ == "__main__":
             print("Signed Message Verified")
         else:
             print("Signed Message Failed to Verify")
-

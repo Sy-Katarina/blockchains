@@ -59,7 +59,7 @@ contract Destination is AccessControl {
 	
 	    underlying_tokens[_underlying_token] = wrapped;
 	    wrapped_tokens[wrapped] = _underlying_token;
-	    tokens.push(wrapped);
+	    tokens.push(_underlying_token);
 	
 	    emit Creation(_underlying_token, wrapped);
 	    return wrapped;

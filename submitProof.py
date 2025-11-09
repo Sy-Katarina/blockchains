@@ -161,6 +161,7 @@ def send_signed_msg(proof, random_leaf):
     w3 = connect_to(chain)
 
     # TODO YOUR CODE HERE
+    contract = w3.eth.contract(address=address, abi=abi)
     tx = contract.functions.submit(proof, random_leaf).build_transaction({
         "from": acct.address,
         "nonce": w3.eth.get_transaction_count(acct.address),

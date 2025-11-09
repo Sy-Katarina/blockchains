@@ -29,6 +29,8 @@ contract Destination is AccessControl {
 	
 	    address wrapped = underlying_tokens[_underlying_token];
 	    require(wrapped != address(0), "token not registered");
+		require(BridgeToken(wrapped).underlying() == _underlying_token, "underlying mismatch");
+
 	
 	    BridgeToken(wrapped).mint(_recipient, _amount);
 	
@@ -37,6 +39,7 @@ contract Destination is AccessControl {
 
 	function unwrap(address _wrapped_token, address _recipient, uint256 _amount ) public {
 		//YOUR CODE HERE
+		require(_wrapped_token != address(0), "bad wrapped");
 	    require(_recipient != address(0), "bad recipient");
 	    require(_amount > 0, "zero amount");
 	

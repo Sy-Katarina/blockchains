@@ -33,7 +33,7 @@ def mine_block(k, prev_hash, transactions):
         digest_int = int.from_bytes(m1.digest(), 'big')
         if (digest_int & mask) == 0:
             return nonce
-        i ++
+        i += 1
 
     assert isinstance(nonce, bytes), 'nonce should be of type bytes'
     return nonce
